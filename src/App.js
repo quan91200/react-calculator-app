@@ -1,58 +1,58 @@
-import './App.css';
-import { useState, useEffect } from 'react';
-import Display from './components/Display'; // Đường dẫn có thể thay đổi tùy thuộc vào cấu trúc thư mục của bạn
-import Button from './components/Button';
+import './App.css'
+import { useState, useEffect } from 'react'
+import Display from './components/Display'
+import Button from './components/Button'
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [result, setResult] = useState('');
-  const [calculatedResult, setCalculatedResult] = useState('');
+  const [darkMode, setDarkMode] = useState(false)
+  const [result, setResult] = useState('')
+  const [calculatedResult, setCalculatedResult] = useState('')
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+    setDarkMode(!darkMode)
+  }
 
   const handleClick = (e) => {
-    setResult(result.concat(e.target.name));
-  };
+    setResult(result.concat(e.target.name))
+  }
 
   const clear = () => {
-    setResult('');
-    setCalculatedResult('');
+    setResult('')
+    setCalculatedResult('')
   };
 
   const handleDelete = () => {
-    setResult(result.slice(0, -1));
-  };
+    setResult(result.slice(0, -1))
+  }
 
   const calculate = () => {
     try {
       // eslint-disable-next-line no-eval
-      const evalResult = eval(result).toString();
-      setCalculatedResult(evalResult);
+      const evalResult = eval(result).toString()
+      setCalculatedResult(evalResult)
     } catch {
-      setCalculatedResult("Error");
+      setCalculatedResult("Error")
     }
-  };
+  }
 
   const handleKeyPress = (e) => {
-    const key = e.key;
+    const key = e.key
     if (!isNaN(key) || key === '.' || key === '+' || key === '-' || key === '*' || key === '/') {
-      setResult(result.concat(key));
+      setResult(result.concat(key))
     } else if (key === 'Enter') {
-      calculate();
+      calculate()
     } else if (key === 'Backspace') {
-      handleDelete();
+      handleDelete()
     } else if (key === 'Escape') {
-      clear();
+      clear()
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('keydown', handleKeyPress)
     return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
+      window.removeEventListener('keydown', handleKeyPress)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result])
 
@@ -90,7 +90,7 @@ function App() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
