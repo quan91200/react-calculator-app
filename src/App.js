@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Display from './components/Display'
 import Button from './components/Button'
 
+// Calculator app
 function App() {
   const [darkMode, setDarkMode] = useState(false)
   const [result, setResult] = useState('')
